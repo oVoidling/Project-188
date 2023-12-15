@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hunting</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>   
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="./js/tree.js"></script>
+    <script src="./js/shoot.js"></script>
+    <script src="./js/player-movement.js"></script>
+</head>
+<body>
+    <a-scene id="scene" inspector-plugin-recast>
+        <a-assets>
+            <a-asset-item id="pistol1" src="./assets/guns/pistol/pistol.glb"></a-asset-item>
+            <a-asset-item id="MP51" src="./assets/guns/MP5/MP5.glb"></a-asset-item>
+            <a-asset-item id="Ak471" src="./assets/guns/Ak47/Ak47.glb"></a-asset-item>
+            <a-asset-item id="Sniper Rifle1" src="./assets/guns/Sniper Rifle/Sniper Rifle.glb"></a-asset-item>
+            <a-asset-item id="wolf" src="./assets/animals/wolf/wolf.glb"></a-asset-item>
+            <a-asset-item id="Bear" src="./assets/animals/Bear/Bear.glb"></a-asset-item>
+            <a-asset-item id="Deer" src="./assets/animals/Deer/Deer.glb"></a-asset-item>
+            <a-asset-item id="Elephant" src="./assets/animals/Elephant/Elephant.glb"></a-asset-item>
+            <a-asset-item id="Llama" src="./assets/animals/Llama/Llama.glb"></a-asset-item>
+            <a-asset-item id="tree" src="./assets/Tree.glb"></a-asset-item>
+            <a-audio id="footStep" src="./assets/sounds/footStep.mp3"></a-audio>
+            <a-audio id="shoot" src="./assets/sounds/shoot.mp3"></a-audio>
+        </a-assets>
+
+        <a-sky src="./assets/sky2.jpg"></a-sky>
+        <a-plane position="0 1.5 0" rotation="-90 0 0" width="29999" height="2999" src="./assets/grass.jpg"></a-plane>
+        <a-entity tree></a-entity>
+        <a-entity id="sound1" sound="src:#shoot;poolSize:2;autoplay:false;volume:4;loop:false"></a-entity>     
+        <a-entity id="sound2" sound="src:#footStep;poolSize:2;autoplay:false;volume:4;loop:false"></a-entity> 
+        <a-entity shoot></a-entity>
+        <a-entity id="camera-rig" movement-controls="speed:0.2" position="0 1 2">
+            <a-entity id="camera" camera raycaster="objects: [data-raycastable]" position="0 1.6 0" wasd-controls-enabled look-controls="pointerLockEnabled: false">
+                <a-entity id="magSizeText" text="value:0;font:exo2bold;align:center;width:8;color:black" position="1.5 -0.5 -1.5"></a-entity>
+                <a-entity id="slash" text="value:/;font:exo2bold;align:center;width:10;color:black" position="1.75 -0.5 -1.5"></a-entity>
+                <a-entity id="totalBulletsText" text="value:0;font:exo2bold;align:center;width:8;color:black" position="2 -0.5 -1.5"></a-entity>
+                <a-entity id="reloadText" text="value:Press 'R' to reload;align:center;color:black;width:8;font:exo2bold" position="0 3 -5" visible="false"></a-entity>
+                <a-entity id="store" text="value:Press 1 to buy MP5(300 Cash),2 to buy Ak47(450 Cash), 3 to buy sniper(600 Cash);align:center;color:black;width:4;font:exo2bold" position="0 3 -5" visible="false"></a-entity> 
+                <a-entity id="pistol" gltf-model="#pistol1" position="0 -0.3 -0.3" scale="0.005 0.005 0.005" rotation="0 0 0" player-movement gun visible="false"></a-entity>
+                <a-entity id="MP5" gltf-model="#MP51" position="0 -0.5 -0.3" scale="0.005 0.005 0.005" rotation="0 90 0"  player-movement gun visible="false"></a-entity>
+                <a-entity id="ak47" gltf-model="#Ak471" position="0 -0.3 -0.3" scale="0.005 0.005 0.005" rotation="0 -90 0"  player-movement gun visible="false"></a-entity>
+                <a-entity id="sniper" gltf-model="#Sniper Rifle1" position="0 -0.3 -0.3" scale="0.005 0.005 0.005" rotation="0 -90 0"  player-movement gun visible="false"></a-entity>
+                <a-cursor></a-cursor>
+            </a-entity>
+        </a-entity>
+    </a-scene>
+</body>
+</html>
